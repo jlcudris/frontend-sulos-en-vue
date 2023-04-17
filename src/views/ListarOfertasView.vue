@@ -89,7 +89,7 @@ export default {
             objeto: '',
             estados: [],
             descripcion: '',
-            estado: 'pendiente'
+            estado: ''
         }
     },
     mounted() {
