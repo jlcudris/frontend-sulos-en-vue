@@ -5,7 +5,9 @@
         <div class="card-header bg-dark text-white text-center">Crear Evento</div>
         <div class="card-body">
           <div class="grid d-flex">
-            <div class="col-7">
+            <div class="row">
+
+              <div class="col-md-7 col-sm-12">
               <div class="input-group mb-3">
                 <span class="input-group-text"><i class="fa-solid fa-object-group"></i></span>
                 <input type="text" v-model="objeto" id="objeto" class="form-control" maxlength="150" placeholder="Objeto"
@@ -31,21 +33,33 @@
 
             </div>
 
-            <div class="col-5">
-              <div class="input-group mb-3">
+            <div class="col-md-5  col-sm-12">
+              <div class="row">
+                <div class="col-12">
+                  <div class="input-group mb-3 search">
 
-                <input class="form-control me-2" type="text" v-model="searchQuery" @input="search" placeholder="Actividad"
-                  aria-label="Search">
-                <ul style="list-style: none; cursor: pointer;" v-if="searchResults.length > 0">
+<input class="form-control me-2 " type="text" v-model="searchQuery" @input="search" placeholder="Actividad"
+  aria-label="Search">
+                </div>
+
+                <div class="col-12">
+                  <ul id="listaProduct" style="list-style: none; cursor: pointer;" v-if="searchResults.length > 0">
                   <li @click="fillInput(result.nombre), selectResult(result)" v-for="result in searchResults"
                     :key="result.id">
                     {{ result.nombre }}
                   </li>
                 </ul>
+                </div>
+              </div>
+              
+                
 
 
               </div>
             </div>
+
+            </div>
+            
 
           </div>
 
@@ -79,7 +93,7 @@ export default {
   mounted() {
 
     this.getCoins()
-      
+
   },
   methods: {
     selectResult(result) {
@@ -133,10 +147,24 @@ export default {
           show_alert(response.data.message, 'success');
         })
         .catch(error => {
-         console.error(error)
+          console.error(error)
           show_alert(error.response.data.message, 'warning')
         });
     }
   }
 }
 </script>
+
+<style>
+.search{
+  margin-bottom: 0px;
+}
+ul#listaProduct {
+  max-height: 100px;
+  z-index: 100;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+</style>
